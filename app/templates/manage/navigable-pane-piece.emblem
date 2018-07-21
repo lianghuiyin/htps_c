@@ -99,19 +99,19 @@ navigable-pane routeName=routeName isActive=isActive isBack=isBack isHide=isHide
 								each model.errors.delegate_number as |error|
 									.help-block.text-danger
 										=error.message
-						li class="list-group-item form-group has-feedback {{if model.errors.order.length 'has-error'}}"
-							label.control-label.col-md-2.col-sm-12 for="order" 打印编号
-							.col-md-10.col-sm-12
-								if isEditing
-									=input id="order" type="text" class="form-control" value=model.order
-									if model.errors.order
-										span.glyphicon.glyphicon-remove.form-control-feedback
-								else
-									p.form-control-static
-										=model.order
-								each model.errors.order as |error|
-									.help-block.text-danger
-										=error.message
+						// li class="list-group-item form-group has-feedback {{if model.errors.order.length 'has-error'}}"
+						// 	label.control-label.col-md-2.col-sm-12 for="order" 打印编号
+						// 	.col-md-10.col-sm-12
+						// 		if isEditing
+						// 			=input id="order" type="text" class="form-control" value=model.order
+						// 			if model.errors.order
+						// 				span.glyphicon.glyphicon-remove.form-control-feedback
+						// 		else
+						// 			p.form-control-static
+						// 				=model.order
+						// 		each model.errors.order as |error|
+						// 			.help-block.text-danger
+						// 				=error.message
 						li class="list-group-item form-group has-feedback {{if model.errors.accessory_factory.length 'has-error'}}"
 							label.control-label.col-md-2.col-sm-12 for="accessory_factory" 配套厂
 							.col-md-10.col-sm-12
@@ -264,8 +264,12 @@ navigable-pane routeName=routeName isActive=isActive isBack=isBack isHide=isHide
 					.empty-box.qrcode-box
 						.glyphicon.glyphicon-qrcode
 						.empty-title
-							|未打印
-					button.btn.btn-info.btn-block{action "printPiece"} 打印二维码
+							if model.is_printed
+								|已打印
+							else
+								|未打印
+					// button.btn.btn-info.btn-block.btn-copy-piece{action "copyPieceContent"} data-clipboard-text="Just because you can doesn't mean you should — clipboard.js" 复制二维码内容
+					button.btn.btn-info.btn-block.btn-copy-piece data-clipboard-text="Just because you can doesn't mean you should — clipboard.js" 复制二维码内容
 
 
 			/ unless isInstancesFolded
