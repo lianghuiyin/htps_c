@@ -1,0 +1,46 @@
+=partial "container-side"
+#manage.container-main.opacity09.trans-all-05 class="{{if applicationController.isSideActive 'is-folded'}}"
+	if isPowered
+		container-wrap isLeft=equipment.isNotXs
+			navigable-pane routeName=routeName isActive=isActive isBack=isBack isHide=isHide
+				.panel
+					.panel-heading.text-center
+						h3.panel-title
+							a.btn-home.pull-left{action "goHome"}  title="返回" href='javascript:void(0)'
+								.glyphicon.glyphicon-home
+								label.sr-only 返回
+							a.btn-bell.pull-right{action "goBell"}  title="通知中心" href='javascript:void(0)'
+								.bell-count
+									=messagesController.model.length
+								.glyphicon.glyphicon-bell
+								label.sr-only 通知中心
+							=pannelTitle
+					.panel-scroll
+						.list-group.list-full
+							a{action "goSearchs"} class="list-group-item {{if isSearchs 'active'}}"
+								span.title 搜索
+								span.glyphicon.glyphicon-search.pull-left
+								if isSearchs
+									span.glyphicon.glyphicon-bookmark.pull-right
+							a{action "goUnuseds"} class="list-group-item {{if isUnuseds 'active'}}"
+								span.title 待打印
+								span.glyphicon.glyphicon-warning-sign.pull-left
+								if isUnuseds
+									span.glyphicon.glyphicon-bookmark.pull-right
+							a{action "goReleases"} class="list-group-item {{if isReleases 'active'}}"
+								span.title 已打印
+								span.glyphicon.glyphicon-inbox.pull-left
+								if isReleases
+									span.glyphicon.glyphicon-bookmark.pull-right
+			if equipment.isXs
+				=outlet
+		if equipment.isNotXs
+			=outlet
+	else
+		none-powered action="goHome"
+
+
+
+
+
+

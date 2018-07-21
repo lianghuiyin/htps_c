@@ -1,0 +1,277 @@
+navigable-pane routeName=routeName isActive=isActive isBack=isBack isHide=isHide
+	standard-detail-panel model=model pannelTitle=model.number isEditing=isEditing isLeftButtonNeeded=equipment.isXs isRightButtonNeeded=sessionController.isCarManagePowered
+		unless isEditing
+			.list-group.list-full.is-child-node-title
+				fold-button class="list-group-item" isFolded=isBaseFolded as |isFolded|
+					|基本信息
+		unless isBaseFolded
+			if isCarArchiving
+				.list-group
+					.alert.alert-warning
+						.help-block.text-warning.text-center 
+							|闲置后该车辆将不可见，您可以在已闲置列表中找回该车辆，确定要继续吗？
+						if archivingCar.errors.server_side_error
+							alert-error model=archivingCar action="clearError"
+						spin-button action="saveArchivingCar" isLoading=archivingCar.isSaving isDisabled=archivingCar.isUnSavable class="btn btn-sm btn-danger btn-block" title="确定"
+						button.btn.btn-default.btn-sm.btn-block{action "goBack"} 
+							span 取消
+			else
+				if isCarRestoring
+					.list-group
+						.alert.alert-warning
+							.help-block.text-warning.text-center 
+								|还原后该车辆将重新可用，您可以在待处理列表中找到该车辆，确定要继续吗？
+							if restoringCar.errors.server_side_error
+								alert-error model=restoringCar action="clearError"
+							spin-button action="saveRestoringCar" isLoading=restoringCar.isSaving isDisabled=restoringCar.isUnSavable class="btn btn-sm btn-danger btn-block" title="确定"
+							button.btn.btn-default.btn-sm.btn-block{action "goBack"} 
+								span 取消
+				else
+					ul.list-group.list-full.form-horizontal
+						unless model.isNew
+							li class="list-group-item form-group has-feedback"
+								label.control-label.col-md-2.col-sm-12 for="number" 系统编号
+								.col-md-10.col-sm-12
+									p.form-control-static
+										=model.id
+						li class="list-group-item form-group has-feedback {{if model.errors.name.length 'has-error'}}"
+							label.control-label.col-md-2.col-sm-12 for="name" 零件名称
+							.col-md-10.col-sm-12
+								if isEditing
+									=input id="name" type="text" class="form-control" value=model.name
+									if model.errors.name
+										span.glyphicon.glyphicon-remove.form-control-feedback
+								else
+									p.form-control-static
+										=model.name
+								each model.errors.name as |error|
+									.help-block.text-danger
+										=error.message
+						li class="list-group-item form-group has-feedback {{if model.errors.ots.length 'has-error'}}"
+							label.control-label.col-md-2.col-sm-12 for="ots" OTS状态
+							.col-md-10.col-sm-12
+								if isEditing
+									=input id="ots" type="text" class="form-control" value=model.ots
+									if model.errors.ots
+										span.glyphicon.glyphicon-remove.form-control-feedback
+								else
+									p.form-control-static
+										=model.ots
+								each model.errors.ots as |error|
+									.help-block.text-danger
+										=error.message
+						li class="list-group-item form-group has-feedback {{if model.errors.number.length 'has-error'}}"
+							label.control-label.col-md-2.col-sm-12 for="number" 零件号
+							.col-md-10.col-sm-12
+								if isEditing
+									=input id="number" type="text" class="form-control" value=model.number
+									if model.errors.number
+										span.glyphicon.glyphicon-remove.form-control-feedback
+								else
+									p.form-control-static
+										=model.number
+								each model.errors.number as |error|
+									.help-block.text-danger
+										=error.message
+						li class="list-group-item form-group has-feedback {{if model.errors.count.length 'has-error'}}"
+							label.control-label.col-md-2.col-sm-12 for="count" 数量-组/个
+							.col-md-10.col-sm-12
+								if isEditing
+									number-input id="count" class="form-control" value=model.count dot=0 isNullable=true placeholder='输入数值'
+									if model.errors.count
+										span.glyphicon.glyphicon-remove.form-control-feedback
+								else
+									p.form-control-static
+										=model.count
+								each model.errors.count as |error|
+									.help-block.text-danger
+										=error.message
+						li class="list-group-item form-group has-feedback {{if model.errors.delegate_number.length 'has-error'}}"
+							label.control-label.col-md-2.col-sm-12 for="delegate_number" 委托编号
+							.col-md-10.col-sm-12
+								if isEditing
+									=input id="delegate_number" type="text" class="form-control" value=model.delegate_number
+									if model.errors.delegate_number
+										span.glyphicon.glyphicon-remove.form-control-feedback
+								else
+									p.form-control-static
+										=model.delegate_number
+								each model.errors.delegate_number as |error|
+									.help-block.text-danger
+										=error.message
+						li class="list-group-item form-group has-feedback {{if model.errors.order.length 'has-error'}}"
+							label.control-label.col-md-2.col-sm-12 for="order" 打印编号
+							.col-md-10.col-sm-12
+								if isEditing
+									=input id="order" type="text" class="form-control" value=model.order
+									if model.errors.order
+										span.glyphicon.glyphicon-remove.form-control-feedback
+								else
+									p.form-control-static
+										=model.order
+								each model.errors.order as |error|
+									.help-block.text-danger
+										=error.message
+						li class="list-group-item form-group has-feedback {{if model.errors.accessory_factory.length 'has-error'}}"
+							label.control-label.col-md-2.col-sm-12 for="accessory_factory" 配套厂
+							.col-md-10.col-sm-12
+								if isEditing
+									=input id="accessory_factory" type="text" class="form-control" value=model.accessory_factory
+									if model.errors.accessory_factory
+										span.glyphicon.glyphicon-remove.form-control-feedback
+								else
+									p.form-control-static
+										=model.accessory_factory
+								each model.errors.accessory_factory as |error|
+									.help-block.text-danger
+										=error.message
+						li class="list-group-item form-group has-feedback {{if model.errors.vehicle_type.length 'has-error'}}"
+							label.control-label.col-md-2.col-sm-12 for="vehicle_type" 车型
+							.col-md-10.col-sm-12
+								if isEditing
+									=input id="vehicle_type" type="text" class="form-control" value=model.vehicle_type
+									if model.errors.vehicle_type
+										span.glyphicon.glyphicon-remove.form-control-feedback
+								else
+									p.form-control-static
+										=model.vehicle_type
+								each model.errors.vehicle_type as |error|
+									.help-block.text-danger
+										=error.message
+						li class="list-group-item form-group has-feedback {{if model.errors.test_content.length 'has-error'}}"
+							label.control-label.col-md-2.col-sm-12 for="test_content" 试验内容
+							.col-md-10.col-sm-12
+								if isEditing
+									=input id="test_content" type="text" class="form-control" value=model.test_content
+									if model.errors.test_content
+										span.glyphicon.glyphicon-remove.form-control-feedback
+								else
+									p.form-control-static
+										=model.test_content
+								each model.errors.test_content as |error|
+									.help-block.text-danger
+										=error.message
+						li class="list-group-item form-group has-feedback {{if model.errors.send_person.length 'has-error'}}"
+							label.control-label.col-md-2.col-sm-12 for="send_person" 送样人员
+							.col-md-10.col-sm-12
+								if isEditing
+									=input id="send_person" type="text" class="form-control" value=model.send_person
+									if model.errors.send_person
+										span.glyphicon.glyphicon-remove.form-control-feedback
+								else
+									p.form-control-static
+										=model.send_person
+								each model.errors.send_person as |error|
+									.help-block.text-danger
+										=error.message
+						li class="list-group-item form-group has-feedback {{if model.errors.charge_person.length 'has-error'}}"
+							label.control-label.col-md-2.col-sm-12 for="charge_person" 主管人员
+							.col-md-10.col-sm-12
+								if isEditing
+									=input id="charge_person" type="text" class="form-control" value=model.charge_person
+									if model.errors.charge_person
+										span.glyphicon.glyphicon-remove.form-control-feedback
+								else
+									p.form-control-static
+										=model.charge_person
+								each model.errors.charge_person as |error|
+									.help-block.text-danger
+										=error.message
+						li class="list-group-item form-group has-feedback {{if model.errors.send_date.length 'has-error'}}"
+							label.control-label.col-md-2.col-sm-12 for="send_date" 送样时间
+							.col-md-10.col-sm-12
+								if isEditing
+									datetime-input id="send_date" class="form-control" target=model.send_date format="yyyy-MM-dd" placeholder='格式类似2017-07-03'
+								else
+									p.form-control-static
+										timefmt model.send_date 'yyyy-MM-dd'
+								each model.errors.send_date as |error|
+									.help-block.text-danger
+										=error.message
+						li class="list-group-item form-group has-feedback {{if model.errors.place.length 'has-error'}}"
+							label.control-label.col-md-2.col-sm-12 for="place" 存放地点
+							.col-md-10.col-sm-12
+								if isEditing
+									=input id="place" type="text" class="form-control" value=model.place
+									if model.errors.place
+										span.glyphicon.glyphicon-remove.form-control-feedback
+								else
+									p.form-control-static
+										=model.place
+								each model.errors.place as |error|
+									.help-block.text-danger
+										=error.message
+						unless model.isNew
+							li class="list-group-item form-group has-feedback"
+								label.control-label.col-md-2.col-sm-12 for="is_printed" 打印状态
+								.col-md-10.col-sm-12
+									radio-list content=printedList value=model.is_printed contentValueKey="value" isEditing=isEditing as |item value|
+										if isEditing
+											radio-list-item content=item contentValueKey="value" compareto=value action="setIsPrinted" as |isChecked|
+												if isChecked
+													span.text-success
+														span.glyphicon.glyphicon-ok
+														=item.name
+												else
+													span.text-muted
+														=item.name
+										else
+											if item.value
+												span.text-success
+													=item.name
+											else
+												span.text-danger
+													=item.name
+						li class="list-group-item form-group has-feedback {{if model.errors.description.length 'has-error'}}"
+							label.control-label.col-md-2.col-sm-12 for="description" 备注
+							.col-md-10.col-sm-12
+								if isEditing
+									=textarea id="description" type="text" rows="4" class="form-control" value=model.description placeholder="请输入备注"
+									if model.errors.description
+										span.glyphicon.glyphicon-remove.form-control-feedback
+								else
+									p.form-control-static
+										=model.description
+								each model.errors.description as |error|
+									.help-block.text-danger
+										=error.message
+						if isNeedToShowFix
+							=partial "detail-fix"
+					if isChecker
+						if model.is_archived
+							.list-group.list-full
+								.alert.alert-warning.text-center 
+									span.glyphicon.glyphicon-cloud.left-icon
+									span 该车辆已闲置
+					else
+						if model.isArchivable
+							.list-group.list-full
+								button.btn.btn-info.btn-block{action "goCarArchive"} 闲置
+						else
+							if model.is_archived
+								.list-group.list-full
+									button.btn.btn-warning.btn-block{action "goCarRestore"} 该车辆已闲置，点击可还原
+		
+		unless isEditing
+			.list-group.list-full.is-child-node-title
+				.list-group-item
+					fold-button class="link-default" isFolded=isInstancesFolded as |isFolded|
+						|二维码
+					a.pull-right.link-default{action "toggleCloudList"}
+						span.glyphicon.glyphicon-cloud class="{{if isCloudList 'text-warning'}}" title="显示已结束申请单"
+			unless isInstancesFolded
+				.list-group.list-full
+					.empty-box.qrcode-box
+						.glyphicon.glyphicon-qrcode
+						.empty-title
+							|未打印
+					button.btn.btn-info.btn-block{action "printPiece"} 打印二维码
+
+
+			/ unless isInstancesFolded
+			/ 	=partial "manage/instance-list"
+	
+
+=partial "manage/instance-pop"
+=partial "common-alert"
+

@@ -1,0 +1,18 @@
+navigable-pane routeName=routeName isActive=isActive isBack=isBack isHide=isHide
+	detail-panel pannelTitle=pannelTitle class="panel-primary"
+		ul.list-group.list-full.form-horizontal
+			li class="list-group-item form-group has-feedback {{if model.errors.code.length 'has-error'}}"
+				.col-md-12
+					code.form-control-static.text-success.qr-content
+						=model.code
+					each model.errors.code as |error|
+						.help-block.text-danger
+							=error.message
+		.list-group.list-full
+			button.btn.btn-cancel.btn-default.btn-block.btn-lg{action "goBack"} 返回
+
+
+
+=partial "common-alert"
+
+=outlet
