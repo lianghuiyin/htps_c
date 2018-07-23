@@ -268,8 +268,10 @@ navigable-pane routeName=routeName isActive=isActive isBack=isBack isHide=isHide
 								|已打印
 							else
 								|未打印
-					// button.btn.btn-info.btn-block.btn-copy-piece{action "copyPieceContent"} data-clipboard-text="Just because you can doesn't mean you should — clipboard.js" 复制二维码内容
-					button.btn.btn-info.btn-block.btn-copy-piece data-clipboard-text="Just because you can doesn't mean you should — clipboard.js" 复制二维码内容
+					clip-board class="btn btn-info btn-block btn-copy-piece" text=clipBoardContent onSuccess="onCopySuccess" onError="onCopyError"
+						|复制二维码内容
+					.clip-board-status.text-center class="{{if isCopySuccess 'text-success' 'text-danger'}}"
+						=copyStatusText
 
 
 			/ unless isInstancesFolded

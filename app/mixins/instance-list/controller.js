@@ -16,6 +16,9 @@ export default Ember.Mixin.create({
     topCount:20,
     pageCount:20,
     selection:null,
+    isCopySuccess:false,
+    copyStatusText:"",
+    clipBoardContent:"",
     selectionDidChange:Ember.observer("selection",function(){
         let instance = this.get("selection");
         if(instance){
@@ -162,7 +165,15 @@ export default Ember.Mixin.create({
             });
 
         },
-        printPiece(){
+        onCopySuccess(){
+            this.set("isCopySuccess", true);
+            this.set("copyStatusText", "已成功复制试件信息，请打开打印软件导入试件信息来打印二维码");
+        },
+        onCopyError(){
+            this.set("isCopySuccess", false);
+            this.set("copyStatusText", "复制试件信息失败，可能是您使用的浏览器不支持！");
+        },
+        setCopyPieceContent(){
             var contents = [];
             contents.push("系统编号:" + this.get("content.id"));
             contents.push("零件名称:" + this.get("content.name"));
@@ -179,13 +190,7 @@ export default Ember.Mixin.create({
             contents.push("存放地点:" + this.get("content.id"));
             contents.push("备注:" + this.get("content.id"));
             var clipBoardContent = contents.join("\r\n");
-            alert(clipBoardContent);
-            if(window.clipboardData){
-                window.clipboardData.setData("Text",clipBoardContent); 
-            }
-            else{
-                alert("目前只支持IE浏览器打印，谢谢！");
-            }
+            this.set("clipBoardContent", clipBoardContent);
         }
     }
 });
