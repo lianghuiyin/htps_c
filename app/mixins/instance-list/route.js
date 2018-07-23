@@ -9,6 +9,7 @@ export default Ember.Mixin.create({
 	    willTransition(){
 			let controller = this.controller;
 			controller.set("copyStatusText", "");
+			controller.set("clipBoardContent", "");
 	        controller.set("isCloudList",false);
 	        //加这段的原因是，刚归档（结束）一个申请单，如果不执行下面的操作，这个申请单将处理未unload的状态
 	        //（原因归档操作的response及一次changeset都会让申请单从unload变成非unload状态），所以这里需要再执行一次
