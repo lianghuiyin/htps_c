@@ -186,7 +186,7 @@ export default Ember.Mixin.create({
             contents.push("试验内容:" + this.get("content.test_content"));
             contents.push("送样人员:" + this.get("content.send_person"));
             contents.push("主管人员:" + this.get("content.charge_person"));
-            contents.push("送样时间:" + this.get("content.send_date").format("yyyy-MM-dd"));
+            contents.push("送样时间:" + (this.get("content.send_date") ? this.get("content.send_date").format("yyyy-MM-dd") : ""));
             contents.push("存放地点:" + this.get("content.place"));
             contents.push("备注:" + this.get("content.description"));
             var clipBoardContent = contents.join("\r\n");
