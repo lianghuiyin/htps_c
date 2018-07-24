@@ -2,5 +2,5 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
 	title:"",
-	tooltip:"未选择车辆"
+	tooltip:"未选择零件"
 });

@@ -5,6 +5,7 @@ export default Ember.Mixin.create({
         didTransition() {
             let controller = this.controller;
 			controller.send("setCopyPieceContent");
+			return this._super();
         },
 	    willTransition(){
 			let controller = this.controller;
