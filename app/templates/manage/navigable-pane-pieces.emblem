@@ -8,10 +8,10 @@ navigable-pane routeName=routeName isActive=isActive isBack=isBack isHide=isHide
 			.glyphicon.glyphicon-chevron-right.pull-right
 			.badge.pull-right
 				=item.count
-			if item.is_archived
-				span.pull-right.glyphicon.glyphicon-cloud.left-icon.text-muted title="已结束/归档"
-			else if item.isFinished
-				span.pull-right.glyphicon.glyphicon-cloud-upload.left-icon.text-danger title="已过期"
-			else if item.isFinishing
-				span.pull-right.glyphicon.glyphicon-cloud-upload.left-icon.text-warning title="近期将过期"
+			// if item.is_archived
+			// 	span.pull-right.glyphicon.glyphicon-cloud.left-icon.text-muted title="已结束/归档"
+			// else if item.isFinished
+			// 	span.pull-right.glyphicon.glyphicon-cloud-upload.left-icon.text-danger title="已过期"
+			// else if item.isFinishing
+			// 	span.pull-right.glyphicon.glyphicon-cloud-upload.left-icon.text-warning title="近期将过期"
 

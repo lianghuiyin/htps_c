@@ -257,8 +257,8 @@ navigable-pane routeName=routeName isActive=isActive isBack=isBack isHide=isHide
 				.list-group-item
 					fold-button class="link-default" isFolded=isInstancesFolded as |isFolded|
 						|二维码
-					a.pull-right.link-default{action "toggleCloudList"}
-						span.glyphicon.glyphicon-cloud class="{{if isCloudList 'text-warning'}}" title="显示已结束申请单"
+					// a.pull-right.link-default{action "toggleCloudList"}
+					// 	span.glyphicon.glyphicon-cloud class="{{if isCloudList 'text-warning'}}" title="显示已结束申请单"
 			unless isInstancesFolded
 				.list-group.list-full
 					.empty-box.qrcode-box
