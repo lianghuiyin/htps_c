@@ -4,7 +4,7 @@ import InstanceListRoute from '../../../mixins/instance-list/route';
 import InstanceDetailRoute from '../../../mixins/instance-detail/route';
 
 export default Ember.Route.extend(StandardDetailRoute,InstanceListRoute,InstanceDetailRoute,{
-    modelName:"car",
+    modelName:"piece",
     controllerName: 'manage.searchs.search',
     parentControllerName:"manage.searchs"
 });

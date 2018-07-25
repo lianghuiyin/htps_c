@@ -7,7 +7,7 @@ export default Ember.Route.extend(StandardListRoute,ArchiveCarsRoute,{
     controllerName: 'manage.searchs',
     parentControllerName:"manage",
     model(){
-        return this.store.peekAll('car');
+        return this.store.peekAll('piece');
     },
     actions:{
         goNew(){
