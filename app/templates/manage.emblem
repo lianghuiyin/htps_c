@@ -32,6 +32,11 @@
 								span.glyphicon.glyphicon-inbox.pull-left
 								if isReleases
 									span.glyphicon.glyphicon-bookmark.pull-right
+							a{action "goArchives"} class="list-group-item {{if isArchives 'active'}}"
+								span.title 已闲置
+								span.glyphicon.glyphicon-cloud.pull-left
+								if isArchives
+									span.glyphicon.glyphicon-bookmark.pull-right
 			if equipment.isXs
 				=outlet
 		if equipment.isNotXs

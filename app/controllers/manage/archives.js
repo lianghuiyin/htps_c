@@ -1,9 +1,9 @@
 import Ember from 'ember';
 import StandardListController from '../../mixins/standard-list/controller';
-import ManageCarsController from '../../mixins/manage-cars/controller';
-import ArchiveCarsController from '../../mixins/archive-cars/controller';
+import ManagePiecesController from '../../mixins/manage-pieces/controller';
+import ArchivePiecesController from '../../mixins/archive-pieces/controller';
 
-export default Ember.Controller.extend(StandardListController,ManageCarsController,ArchiveCarsController,{
+export default Ember.Controller.extend(StandardListController,ManagePiecesController,ArchivePiecesController,{
     modelName:"archive",
     routeName:"manage.archives",
     parentController:Ember.inject.controller('manage'),

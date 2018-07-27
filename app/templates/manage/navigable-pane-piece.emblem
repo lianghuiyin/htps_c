@@ -9,7 +9,7 @@ navigable-pane routeName=routeName isActive=isActive isBack=isBack isHide=isHide
 				.list-group
 					.alert.alert-warning
 						.help-block.text-warning.text-center 
-							|闲置后该车辆将不可见，您可以在已闲置列表中找回该车辆，确定要继续吗？
+							|闲置后该试件将不可见，您可以在已闲置列表中找回该试件，确定要继续吗？
 						if archivingCar.errors.server_side_error
 							alert-error model=archivingCar action="clearError"
 						spin-button action="saveArchivingCar" isLoading=archivingCar.isSaving isDisabled=archivingCar.isUnSavable class="btn btn-sm btn-danger btn-block" title="确定"
@@ -20,7 +20,7 @@ navigable-pane routeName=routeName isActive=isActive isBack=isBack isHide=isHide
 					.list-group
 						.alert.alert-warning
 							.help-block.text-warning.text-center 
-								|还原后该车辆将重新可用，您可以在待处理列表中找到该车辆，确定要继续吗？
+								|还原后该试件将重新可用，您可以在待处理列表中找到该试件，确定要继续吗？
 							if restoringCar.errors.server_side_error
 								alert-error model=restoringCar action="clearError"
 							spin-button action="saveRestoringCar" isLoading=restoringCar.isSaving isDisabled=restoringCar.isUnSavable class="btn btn-sm btn-danger btn-block" title="确定"
@@ -242,7 +242,7 @@ navigable-pane routeName=routeName isActive=isActive isBack=isBack isHide=isHide
 							.list-group.list-full
 								.alert.alert-warning.text-center 
 									span.glyphicon.glyphicon-cloud.left-icon
-									span 该车辆已闲置
+									span 该试件已闲置
 					else
 						if model.isArchivable
 							.list-group.list-full
@@ -250,7 +250,7 @@ navigable-pane routeName=routeName isActive=isActive isBack=isBack isHide=isHide
 						else
 							if model.is_archived
 								.list-group.list-full
-									button.btn.btn-warning.btn-block{action "goCarRestore"} 该车辆已闲置，点击可还原
+									button.btn.btn-warning.btn-block{action "goCarRestore"} 该试件已闲置，点击可还原
 		
 		unless isEditing
 			.list-group.list-full.is-child-node-title

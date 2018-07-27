@@ -8,6 +8,7 @@ export default DS.Model.extend({
     count: DS.attr('number',{ defaultValue: 0 }),//数量
     printed_count: DS.attr('number',{ defaultValue: 0 }),//已打印数量
     is_printed: DS.attr('boolean', {defaultValue: false}),//是否已全部打印
+    is_archived:DS.attr('boolean', { defaultValue: false }),
     ots: DS.attr('string',{ defaultValue: '' }),//ots状态
     delegate_number: DS.attr('string',{ defaultValue: '' }),//委托编号
     accessory_factory: DS.attr('string',{ defaultValue: '' }),//配套厂
@@ -103,5 +104,8 @@ export default DS.Model.extend({
         else{
             return this.get("is_printed");
         }
+    }),
+    isArchivable:Ember.computed("is_archived",function(){
+        return !(this.get("is_archived") || this.get("isNew"));
     })
 });
