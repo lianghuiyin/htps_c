@@ -1,8 +1,8 @@
 import Ember from 'ember';
 import StandardListRoute from '../../mixins/standard-list/route';
-import ArchiveCarsRoute from '../../mixins/archive-cars/route';
+import ArchivePiecesRoute from '../../mixins/archive-pieces/route';
 
-export default Ember.Route.extend(StandardListRoute,ArchiveCarsRoute,{
+export default Ember.Route.extend(StandardListRoute,ArchivePiecesRoute,{
     modelName:"search",
     controllerName: 'manage.searchs',
     parentControllerName:"manage",
