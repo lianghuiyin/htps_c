@@ -6,7 +6,7 @@ export default Ember.Mixin.create({
         didTransition() {
         	let controller = this.controller;
 	    	if(controller.get("model.is_archived")){
-	            controller.send("enterRestoreCar");
+	            controller.send("enterRestorePiece");
 	            return true;
 	    	}
 	    	else{
@@ -22,7 +22,7 @@ export default Ember.Mixin.create({
                 controller.send("cancelRestoringCar");
                 return true;
             }
-            else if(controller.get("restoringCar.isNew")){
+            else if(controller.get("restoringPiece.isNew")){
                 this.controller.send("showCancelConfirm",transition);
                 transition.abort();
             }

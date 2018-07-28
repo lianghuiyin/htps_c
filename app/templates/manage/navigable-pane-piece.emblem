@@ -5,25 +5,25 @@ navigable-pane routeName=routeName isActive=isActive isBack=isBack isHide=isHide
 				fold-button class="list-group-item" isFolded=isBaseFolded as |isFolded|
 					|基本信息
 		unless isBaseFolded
-			if isCarArchiving
+			if isPieceArchiving
 				.list-group
 					.alert.alert-warning
 						.help-block.text-warning.text-center 
 							|闲置后该试件将不可见，您可以在已闲置列表中找回该试件，确定要继续吗？
-						if archivingCar.errors.server_side_error
-							alert-error model=archivingCar action="clearError"
-						spin-button action="saveArchivingCar" isLoading=archivingCar.isSaving isDisabled=archivingCar.isUnSavable class="btn btn-sm btn-danger btn-block" title="确定"
+						if archivingPiece.errors.server_side_error
+							alert-error model=archivingPiece action="clearError"
+						spin-button action="saveArchivingCar" isLoading=archivingPiece.isSaving isDisabled=archivingPiece.isUnSavable class="btn btn-sm btn-danger btn-block" title="确定"
 						button.btn.btn-default.btn-sm.btn-block{action "goBack"} 
 							span 取消
 			else
-				if isCarRestoring
+				if isPieceRestoring
 					.list-group
 						.alert.alert-warning
 							.help-block.text-warning.text-center 
 								|还原后该试件将重新可用，您可以在待处理列表中找到该试件，确定要继续吗？
-							if restoringCar.errors.server_side_error
-								alert-error model=restoringCar action="clearError"
-							spin-button action="saveRestoringCar" isLoading=restoringCar.isSaving isDisabled=restoringCar.isUnSavable class="btn btn-sm btn-danger btn-block" title="确定"
+							if restoringPiece.errors.server_side_error
+								alert-error model=restoringPiece action="clearError"
+							spin-button action="saveRestoringCar" isLoading=restoringPiece.isSaving isDisabled=restoringPiece.isUnSavable class="btn btn-sm btn-danger btn-block" title="确定"
 							button.btn.btn-default.btn-sm.btn-block{action "goBack"} 
 								span 取消
 				else
@@ -246,11 +246,11 @@ navigable-pane routeName=routeName isActive=isActive isBack=isBack isHide=isHide
 					else
 						if model.isArchivable
 							.list-group.list-full
-								button.btn.btn-info.btn-block{action "goCarArchive"} 闲置
+								button.btn.btn-info.btn-block{action "goPieceArchive"} 闲置
 						else
 							if model.is_archived
 								.list-group.list-full
-									button.btn.btn-warning.btn-block{action "goCarRestore"} 该试件已闲置，点击可还原
+									button.btn.btn-warning.btn-block{action "goPieceRestore"} 该试件已闲置，点击可还原
 		
 		unless isEditing
 			.list-group.list-full.is-child-node-title

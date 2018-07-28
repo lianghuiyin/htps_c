@@ -39,11 +39,11 @@ export default Ember.Mixin.create({
 	        	return this._super();
             }
         },
-        goCarArchive(){
+        goPieceArchive(){
             let routeName = this.controller.get("routeName");
             this.transitionTo(`${routeName}.archive`);
         },
-        goCarRestore(){
+        goPieceRestore(){
             let routeName = this.controller.get("routeName");
             this.transitionTo(`${routeName}.restore`);
         },

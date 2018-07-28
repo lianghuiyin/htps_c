@@ -27,10 +27,10 @@ export default Ember.Mixin.create({
         else if(this.get("isArchiving")){
             return "检测到正在结束申请单，是否要放弃？";
         }
-        else if(this.get("isCarArchiving")){
+        else if(this.get("isPieceArchiving")){
             return "检测到正在闲置车辆，是否要放弃？";
         }
-        else if(this.get("isCarRestoring")){
+        else if(this.get("isPieceRestoring")){
             return "检测到正在还原车辆，是否要放弃？";
         }
         else{
@@ -124,10 +124,10 @@ export default Ember.Mixin.create({
             return isArchivable;
         }
     }),
-    isCarArchiving:false,
-    archivingCar:null,
-    isCarRestoring:false,
-    restoringCar:null,
+    isPieceArchiving:false,
+    archivingPiece:null,
+    isPieceRestoring:false,
+    restoringPiece:null,
     isForbidding:false,
     forbiddingModel:null,
     // selectionForbidableDidChange:Ember.observer("selection.isForbidable",function(){
@@ -260,11 +260,11 @@ export default Ember.Mixin.create({
         });
         return archive;
     },
-    createCarArchive(){
+    createPiecerArchive(){
         let currentUser = this.get("sessionController.user");
-        let currentCar = this.get("model");
-        let archive = this.store.createRecord("cararchive", {
-            car: currentCar,
+        let currentPiece = this.get("model");
+        let archive = this.store.createRecord("piecearchive", {
+            piece: currentPiece,
             creater: currentUser,
             created_date:(new Date())
         });
@@ -272,9 +272,9 @@ export default Ember.Mixin.create({
     },
     createCarRestore(){
         let currentUser = this.get("sessionController.user");
-        let currentCar = this.get("model");
-        let restore = this.store.createRecord("carrestore", {
-            car: currentCar,
+        let currentPiece = this.get("model");
+        let restore = this.store.createRecord("piecerestore", {
+            piece: currentPiece,
             creater: currentUser,
             created_date:(new Date())
         });
@@ -372,16 +372,16 @@ export default Ember.Mixin.create({
         setIsPrinted(value){
             this.set("model.is_printed",value);
         },
-        enterArchivingCar(){
-            let archive = this.createCarArchive();
-            this.set("archivingCar",archive);
-            this.set("isCarArchiving",true);
+        enterArchivingPiece(){
+            let archive = this.createPiecerArchive();
+            this.set("archivingPiece",archive);
+            this.set("isPieceArchiving",true);
             this.set("isBaseFolded",false);
         },
         saveArchivingCar(){
-            let archivingCar = this.get("archivingCar");
-            if(archivingCar){
-                archivingCar.save().then(
+            let archivingPiece = this.get("archivingPiece");
+            if(archivingPiece){
+                archivingPiece.save().then(
                     ()=>{
                         this.send("goBack");
                     }, 
@@ -390,26 +390,26 @@ export default Ember.Mixin.create({
                 );
             }
             else{
-                this.set("archivingCar",null);
-                this.set("isCarArchiving",false);
+                this.set("archivingPiece",null);
+                this.set("isPieceArchiving",false);
             }
         },
         cancelArchivingCar(){
-            let archivingCar = this.get("archivingCar");
-            this.set("archivingCar",null);
-            this.set("isCarArchiving",false);
-            this.store.unloadRecord(archivingCar);
+            let archivingPiece = this.get("archivingPiece");
+            this.set("archivingPiece",null);
+            this.set("isPieceArchiving",false);
+            this.store.unloadRecord(archivingPiece);
         },
-        enterRestoreCar(){
+        enterRestorePiece(){
             let restore = this.createCarRestore();
-            this.set("restoringCar",restore);
-            this.set("isCarRestoring",true);
+            this.set("restoringPiece",restore);
+            this.set("isPieceRestoring",true);
             this.set("isBaseFolded",false);
         },
         saveRestoringCar(){
-            let restoringCar = this.get("restoringCar");
-            if(restoringCar){
-                restoringCar.save().then(
+            let restoringPiece = this.get("restoringPiece");
+            if(restoringPiece){
+                restoringPiece.save().then(
                     ()=>{
                         this.send("goBack");
                     }, 
@@ -418,15 +418,15 @@ export default Ember.Mixin.create({
                 );
             }
             else{
-                this.set("restoringCar",null);
-                this.set("isCarRestoring",false);
+                this.set("restoringPiece",null);
+                this.set("isPieceRestoring",false);
             }
         },
         cancelRestoringCar(){
-            let restoringCar = this.get("restoringCar");
-            this.set("restoringCar",null);
-            this.set("isCarRestoring",false);
-            this.store.unloadRecord(restoringCar);
+            let restoringPiece = this.get("restoringPiece");
+            this.set("restoringPiece",null);
+            this.set("isPieceRestoring",false);
+            this.store.unloadRecord(restoringPiece);
         },
         enterNewInstance(){
             let instance = this.createInstance();
