@@ -6,50 +6,6 @@
 				a.navbar-brand{action "goAccount"}
 					.glyphicon.glyphicon-user
 					=sessionController.user.name
-		ul.nav.pull-right
-			if isOptimizable
-				li.pull-left.optimizer-box
-					a.btn-top-icon{action 'oneTouchOptimize'} title="一键优化" class="{{if isOptimized 'text-muted'}}"
-						if isOptimizing
-							spin-space
-						else
-							span.glyphicon.glyphicon-plane
-							label.sr-only 一键优化
-							.badge
-								=carsCount
-					.tooltip.bottom.fade.in role="tooltip"
-						.tooltip-arrow
-						.tooltip-inner
-							=optimizerHelpInfo
-							if isOptimizing
-								.text-center.text-warning
-									|Loading...
-							else
-								.text-success
-									=optimizedMessage
-
-							
-							each errors.server_side_error as |error|
-								.help-block.text-danger.text-center
-									=error.message
-			li.pull-left
-				a.btn-top-icon{action 'goBell'} title="通知中心"
-					span.glyphicon.glyphicon-bell
-					label.sr-only 通知中心
-					.badge
-						=messagesController.model.length
-			/ li.pull-left
-			/ 	a{action 'goValids'} title="大屏展示"
-			/ 		span.glyphicon.glyphicon-th-large
-			/ 		label.sr-only 大屏展示
-			li.pull-left
-				a.btn-top-icon{action 'goShortcut'} title="快捷打印"
-					span.glyphicon.glyphicon-camera
-					label.sr-only 快捷打印
-			li.pull-left
-				a.btn-top-icon{action 'goOnline'} title="打印同步"
-					span.glyphicon.glyphicon-facetime-video
-					label.sr-only 打印同步
 
 	.container-fluid.option-box
 		.row
