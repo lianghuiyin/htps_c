@@ -13,11 +13,6 @@ export default DS.Model.extend({
     created_date: DS.attr('date'),
     modifier: DS.belongsTo('user', { async: false,inverse: null }),
     modified_date: DS.attr('date'),
-    isBillScannerPowered:Ember.computed("role","role.powers",function(){
-        let powers = this.get("role.powers");
-        let powersIds = powers ? powers.mapBy("id") : [];
-        return powersIds.contains("4");
-    }),
     searchKeys:Ember.computed("name","phone","email","role.name",function(){
         return [this.get("name").toLowerCase(),
             this.get("phone").toLowerCase(),

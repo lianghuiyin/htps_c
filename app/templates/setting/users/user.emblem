@@ -53,27 +53,6 @@ navigable-pane routeName=routeName isActive=isActive isBack=isBack isHide=isHide
 					each model.errors.role as |error|
 						.help-block.text-danger
 							=error.message
-			if model.isBillScannerPowered
-				li class="list-group-item form-group has-feedback"
-					label.control-label.col-md-2.col-sm-12 for="is_sign_needed" 加油签字
-					.col-md-8.col-sm-12
-						radio-list content=isSignNeededList value=model.is_sign_needed contentValueKey="value" isEditing=isEditing as |item value|
-							if isEditing
-								radio-list-item content=item contentValueKey="value" compareto=value action="setIsSignNeeded" as |isChecked|
-									if isChecked
-										span.text-success
-											span.glyphicon.glyphicon-ok
-											=item.name
-									else
-										span.text-muted
-											=item.name
-							else
-								if item.value
-									span.text-success
-										=item.name
-								else
-									span.text-danger
-										=item.name
 			unless model.isNew
 				li class="list-group-item form-group has-feedback"
 					label.control-label.col-md-2.col-sm-12 for="is_enable" 状态

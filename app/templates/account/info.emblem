@@ -52,14 +52,6 @@ navigable-pane routeName=routeName isActive=isActive isBack=isBack isHide=isHide
 					.col-md-8.col-sm-12
 						p.form-control-static
 							=model.role.name
-				if model.isBillScannerPowered
-					li class="list-group-item form-group has-feedback"
-						label.control-label.col-md-2.col-sm-12 for="is_sign_needed" 加油签字
-						.col-md-8.col-sm-12
-							if model.is_sign_needed
-								span.text-success 需要签字
-							else
-								span.text-danger 不需要签字
 				li class="list-group-item form-group has-feedback {{if model.errors.signature.length 'has-error'}}"
 					label.control-label.col-md-2.col-sm-12 for="signature" 个性签名
 					.col-md-8.col-sm-12

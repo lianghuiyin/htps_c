@@ -77,9 +77,6 @@ export default Ember.Controller.extend({
         let powersIds = powers ? powers.mapBy("id") : [];
         return powersIds.contains("3");
     }),
-    isBillScannerPowered:Ember.computed("user","user.role","user.role.powers",function(){
-        return false;
-    }),
     isBillLosePowered:Ember.computed("user","user.role","user.role.powers",function(){
         let powers = this.get("user.role.powers");
         let powersIds = powers ? powers.mapBy("id") : [];
