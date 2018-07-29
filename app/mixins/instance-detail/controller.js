@@ -2,6 +2,9 @@ import Ember from 'ember';
 
 export default Ember.Mixin.create({
     isPickUpPopActive:false,
+    isPrintPowered:Ember.computed("sessionController.isPrintPowered",function(){
+        return this.get("sessionController.isPrintPowered");
+    }),
     confirmingCancelMsg:Ember.computed("isNew","isCreatingInstance","isCreatingTrace","isRecapturing","isChecking","isForbidding","isEnabling","isAborting","isArchiving",function(){
         if(this.get("isCreatingInstance")){
             return "检测到新建申请单，是否要放弃？";

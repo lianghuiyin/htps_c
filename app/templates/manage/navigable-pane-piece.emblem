@@ -1,5 +1,5 @@
 navigable-pane routeName=routeName isActive=isActive isBack=isBack isHide=isHide
-	standard-detail-panel model=model pannelTitle=model.number isEditing=isEditing isLeftButtonNeeded=equipment.isXs isRightButtonNeeded=sessionController.isCarManagePowered
+	standard-detail-panel model=model pannelTitle=model.number isEditing=isEditing isLeftButtonNeeded=equipment.isXs isRightButtonNeeded=sessionController.isPieceManagePowered
 		unless isEditing
 			.list-group.list-full.is-child-node-title
 				fold-button class="list-group-item" isFolded=isBaseFolded as |isFolded|
@@ -251,31 +251,31 @@ navigable-pane routeName=routeName isActive=isActive isBack=isBack isHide=isHide
 							if model.is_archived
 								.list-group.list-full
 									button.btn.btn-warning.btn-block{action "goPieceRestore"} 该试件已闲置，点击可还原
-		
-		unless isEditing
-			.list-group.list-full.is-child-node-title
-				.list-group-item
-					fold-button class="link-default" isFolded=isInstancesFolded as |isFolded|
-						|二维码
-					// a.pull-right.link-default{action "toggleCloudList"}
-					// 	span.glyphicon.glyphicon-cloud class="{{if isCloudList 'text-warning'}}" title="显示已结束申请单"
-			unless isInstancesFolded
-				.list-group.list-full
-					.empty-box.qrcode-box
-						.glyphicon.glyphicon-qrcode
-						.empty-title
-							if model.is_printed
-								|已打印
-							else
-								|未打印
-					clip-board class="btn btn-info btn-block btn-copy-piece" text=clipBoardContent onSuccess="onCopySuccess" onError="onCopyError"
-						|复制二维码内容
-					.clip-board-status.text-center class="{{if isCopySuccess 'text-success' 'text-danger'}}"
-						=copyStatusText
+		if isPrintPowered
+			unless isEditing
+				.list-group.list-full.is-child-node-title
+					.list-group-item
+						fold-button class="link-default" isFolded=isInstancesFolded as |isFolded|
+							|二维码
+						// a.pull-right.link-default{action "toggleCloudList"}
+						// 	span.glyphicon.glyphicon-cloud class="{{if isCloudList 'text-warning'}}" title="显示已结束申请单"
+				unless isInstancesFolded
+					.list-group.list-full
+						.empty-box.qrcode-box
+							.glyphicon.glyphicon-qrcode
+							.empty-title
+								if model.is_printed
+									|已打印
+								else
+									|未打印
+						clip-board class="btn btn-info btn-block btn-copy-piece" text=clipBoardContent onSuccess="onCopySuccess" onError="onCopyError"
+							|复制二维码内容
+						.clip-board-status.text-center class="{{if isCopySuccess 'text-success' 'text-danger'}}"
+							=copyStatusText
 
 
-			/ unless isInstancesFolded
-			/ 	=partial "manage/instance-list"
+				/ unless isInstancesFolded
+				/ 	=partial "manage/instance-list"
 	
 
 =partial "manage/instance-pop"

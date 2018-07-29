@@ -54,7 +54,7 @@
 	.container-fluid.option-box
 		.row
 			.col-sm-6.option-item
-				div.option-wrap{action 'goManage'} class="{{unless sessionController.isManagePowered 'disabled'}}" title='加油管理'
+				div.option-wrap{action 'goManage'} class="{{unless sessionController.isManagePowered 'disabled'}}" title='试件库'
 					span.t-shadow.glyphicon.glyphicon-inbox
 					div.option-title 试件库
 			.col-sm-6.option-item
@@ -81,7 +81,10 @@
 						else
 							.empty-box
 								.glyphicon.glyphicon-road
-								.empty-title 没有找到扫描记录
+								if isScanner
+									.empty-title 没有找到扫描记录
+								else
+									.empty-title 您没有扫描试件权限
 				if isScanner
 					.panel-footer
 						.tooltip.left.fade.in role="tooltip"

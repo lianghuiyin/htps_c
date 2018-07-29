@@ -11,9 +11,8 @@ export default Ember.Controller.extend(NavigablePaneController,{
     pannelTitle:"最新扫描内容",
     isActive:true,
     selection:null,
-    isScanner:Ember.computed("sessionController.isBillScannerPowered",function(){
-        return true;
-        // return this.get("sessionController.isBillScannerPowered");
+    isScanner:Ember.computed("sessionController.isScannerPowered",function(){
+        return this.get("sessionController.isScannerPowered");
     }),
     isFolded:Ember.computed("sessionController.isSystemPowered","sessionController.isManagePowered",function(){
         return !(this.get("sessionController.isSystemPowered") || this.get("sessionController.isManagePowered"));

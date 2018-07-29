@@ -67,23 +67,36 @@ export default Ember.Controller.extend({
         let powersIds = powers ? powers.mapBy("id") : [];
         return powersIds.contains("2");
     }),
+    isPieceManagePowered:Ember.computed("user","user.role","user.role.powers",function(){
+        let powers = this.get("user.role.powers");
+        let powersIds = powers ? powers.mapBy("id") : [];
+        return powersIds.contains("2");
+    }),
     isInstanceCheckPowered:Ember.computed("user","user.role","user.role.powers",function(){
         let powers = this.get("user.role.powers");
         let powersIds = powers ? powers.mapBy("id") : [];
         return powersIds.contains("3");
     }),
     isBillScannerPowered:Ember.computed("user","user.role","user.role.powers",function(){
-        let powers = this.get("user.role.powers");
-        let powersIds = powers ? powers.mapBy("id") : [];
-        return powersIds.contains("4");
+        return false;
     }),
     isBillLosePowered:Ember.computed("user","user.role","user.role.powers",function(){
         let powers = this.get("user.role.powers");
         let powersIds = powers ? powers.mapBy("id") : [];
         return powersIds.contains("5");
     }),
-    isManagePowered:Ember.computed("isCarManagePowered","isInstanceCheckPowered",function(){
-        return this.get("isCarManagePowered") || this.get("isInstanceCheckPowered");
+    isScannerPowered:Ember.computed("user","user.role","user.role.powers",function(){
+        let powers = this.get("user.role.powers");
+        let powersIds = powers ? powers.mapBy("id") : [];
+        return powersIds.contains("4");
+    }),
+    isPrintPowered:Ember.computed("user","user.role","user.role.powers",function(){
+        let powers = this.get("user.role.powers");
+        let powersIds = powers ? powers.mapBy("id") : [];
+        return powersIds.contains("3");
+    }),
+    isManagePowered:Ember.computed("isPieceManagePowered","isPrintPowered",function(){
+        return this.get("isPieceManagePowered") || this.get("isPrintPowered");
     }),
     isSignNeeded:Ember.computed("user","user.is_sign_needed",function(){
         return this.get("user.is_sign_needed");
