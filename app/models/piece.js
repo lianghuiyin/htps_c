@@ -4,7 +4,7 @@ import DS from 'ember-data';
 export default DS.Model.extend({
     name: DS.attr('string'),
     number: DS.attr('string',{ defaultValue: '' }),//零件号
-    order: DS.attr('string',{ defaultValue: '' }),//打印编号
+    // order: DS.attr('string',{ defaultValue: '' }),//打印编号
     count: DS.attr('number',{ defaultValue: 0 }),//数量
     printed_count: DS.attr('number',{ defaultValue: 0 }),//已打印数量
     is_printed: DS.attr('boolean', {defaultValue: false}),//是否已全部打印
@@ -30,7 +30,7 @@ export default DS.Model.extend({
         }
         var name = this.get("name"),
             number = this.get("number"),
-            order = this.get("order"),
+            // order = this.get("order"),
             accessory_factory = this.get("accessory_factory"),
             vehicle_type = this.get("vehicle_type"),
             send_date = this.get("send_date"),
@@ -42,18 +42,18 @@ export default DS.Model.extend({
         if(number){
             re.push(number.toLowerCase());
         }
-        if(order){
-            re.push(order.toLowerCase());
-        }
+        // if(order){
+        //     re.push(order.toLowerCase());
+        // }
         if(accessory_factory){
             re.push(accessory_factory.toLowerCase());
         }
         if(vehicle_type){
             re.push(vehicle_type.toLowerCase());
         }
-        if(send_date){
-            re.push(send_date.format("yyyy-MM-dd"));
-        }
+        // if(send_date){
+        //     re.push(send_date.format("yyyy-MM-dd"));
+        // }
         if(place){
             re.push(place.toLowerCase());
         }
