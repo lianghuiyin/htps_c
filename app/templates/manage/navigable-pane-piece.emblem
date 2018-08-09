@@ -20,7 +20,7 @@ navigable-pane routeName=routeName isActive=isActive isBack=isBack isHide=isHide
 					.list-group
 						.alert.alert-warning
 							.help-block.text-warning.text-center 
-								|还原后该试件将重新可用，您可以在待处理列表中找到该试件，确定要继续吗？
+								|还原后该试件将重新可用，您可以在待/已打印列表中找到该试件，确定要继续吗？
 							if restoringPiece.errors.server_side_error
 								alert-error model=restoringPiece action="clearError"
 							spin-button action="saveRestoringCar" isLoading=restoringPiece.isSaving isDisabled=restoringPiece.isUnSavable class="btn btn-sm btn-danger btn-block" title="确定"

@@ -395,7 +395,8 @@ module.exports = function(app) {
       Creater: 1,
       CreatedDate: new Date(),
       Modifier: 1,
-      ModifiedDate: new Date()
+      ModifiedDate: new Date(),
+      IsArchived: false
     },{
       Id: 2,
       Name: '外后视镜2',
@@ -418,7 +419,8 @@ module.exports = function(app) {
       Creater: 1,
       CreatedDate: new Date(),
       Modifier: 1,
-      ModifiedDate: new Date()
+      ModifiedDate: new Date(),
+      IsArchived: false
     },{
       Id: 3,
       Name: '外后视镜3',
@@ -441,7 +443,8 @@ module.exports = function(app) {
       Creater: 1,
       CreatedDate: new Date(),
       Modifier: 1,
-      ModifiedDate: new Date()
+      ModifiedDate: new Date(),
+      IsArchived: false
     },{
       Id: 4,
       Name: '外后视镜4',
@@ -464,7 +467,8 @@ module.exports = function(app) {
       Creater: 1,
       CreatedDate: new Date(),
       Modifier: 1,
-      ModifiedDate: new Date()
+      ModifiedDate: new Date(),
+      IsArchived: false
     },{
       Id: 5,
       Name: '外后视镜5',
@@ -487,7 +491,8 @@ module.exports = function(app) {
       Creater: 1,
       CreatedDate: new Date(),
       Modifier: 1,
-      ModifiedDate: new Date()
+      ModifiedDate: new Date(),
+      IsArchived: false
     },{
       Id: 6,
       Name: '外后视镜6',
@@ -510,7 +515,8 @@ module.exports = function(app) {
       Creater: 1,
       CreatedDate: new Date(),
       Modifier: 1,
-      ModifiedDate: new Date()
+      ModifiedDate: new Date(),
+      IsArchived: true
     }
   ];
 

@@ -1,9 +1,9 @@
 if equipment.isXs
-	=partial "manage/navigable-pane-car"
+	=partial "manage/navigable-pane-piece"
 	=outlet
 else
 	container-wrap isRight=true isMulti=true
-		=partial "manage/navigable-pane-car"
+		=partial "manage/navigable-pane-piece"
 	=outlet
 
 
