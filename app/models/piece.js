@@ -4,7 +4,7 @@ import DS from 'ember-data';
 export default DS.Model.extend({
     name: DS.attr('string'),
     number: DS.attr('string',{ defaultValue: '' }),//零件号
-    // order: DS.attr('string',{ defaultValue: '' }),//打印编号
+    order: DS.attr('string',{ defaultValue: '' }),//打印编号
     count: DS.attr('number',{ defaultValue: 0 }),//数量
     printed_count: DS.attr('number',{ defaultValue: 0 }),//已打印数量
     is_printed: DS.attr('boolean', {defaultValue: false}),//是否已全部打印

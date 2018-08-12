@@ -14,8 +14,8 @@ export default Ember.Controller.extend({
 	appShortTitle:"试件信息系统",
 	author:"上海好耐电子科技有限公司 M&T HORIZON",
 	authorSite:"http://www.mthorizon.com/",
-	copyright:"版权所有 Copyright 2017",
-	version:"当前版本：V0.0.2",
+	copyright:"版权所有 Copyright 2018",
+	version:"当前版本：V1.0.0",
 	currentUser:null,
     syncToken:null,
     serializedSyncToken:null,//反序列化syncToken值，用于把syncToken值提交给服务器
