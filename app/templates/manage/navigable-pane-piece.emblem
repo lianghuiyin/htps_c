@@ -244,13 +244,14 @@ navigable-pane routeName=routeName isActive=isActive isBack=isBack isHide=isHide
 					// 				span.glyphicon.glyphicon-cloud.left-icon
 					// 				span 该试件已闲置
 					// else
-					if model.isArchivable
-						.list-group.list-full
-							button.btn.btn-info.btn-block{action "goPieceArchive"} 闲置
-					else
-						if model.is_archived
+					unless isEditing
+						if model.isArchivable
 							.list-group.list-full
-								button.btn.btn-warning.btn-block{action "goPieceRestore"} 该试件已闲置，点击可还原
+								button.btn.btn-info.btn-block{action "goPieceArchive"} 闲置
+						else
+							if model.is_archived
+								.list-group.list-full
+									button.btn.btn-warning.btn-block{action "goPieceRestore"} 该试件已闲置，点击可还原
 		if isPrintPowered
 			unless isEditing
 				.list-group.list-full.is-child-node-title
